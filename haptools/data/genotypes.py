@@ -1005,7 +1005,7 @@ class GenotypesPLINK(GenotypesVCF):
         self,
         fname: Path | str,
         log: Logger = None,
-        chunk_size: int = None,
+        chunk_size: int = 100000,
     ):
         super().__init__(fname, log)
         self.chunk_size = chunk_size

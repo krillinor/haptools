@@ -214,7 +214,7 @@ def output_vcf(
             gts = GenotypesVCF(out, log=log)
 
     else:
-        gts = GenotypesPLINK(out, log=log, chunk_size=chunk_size)
+        gts = GenotypesPLINK(out, log=log)
     
     gts.samples = output_samples
     gts.variants = vcf.variants
