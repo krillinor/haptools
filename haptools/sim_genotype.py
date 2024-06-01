@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os
 import re
 import sys
@@ -24,7 +22,8 @@ def output_vcf(
         sample_field, 
         no_replacement,
         out, 
-        log
+        log,
+        chunk_size
     ):
     """
     Takes in simulated breakpoints and uses reference files, vcf and sampleinfo, 
@@ -215,7 +214,7 @@ def output_vcf(
             gts = GenotypesVCF(out, log=log)
 
     else:
-        gts = GenotypesPLINK(out, log=log)
+        gts = GenotypesPLINK(out, log=log, chunk_size=chunk_size)
     
     gts.samples = output_samples
     gts.variants = vcf.variants

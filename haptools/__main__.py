@@ -210,6 +210,14 @@ def karyogram(bp, sample, out, title, centromeres, colors, verbosity):
     show_default=True,
     help="The level of verbosity desired",
 )
+@click.option(
+    "-c",
+    "--chunk-size",
+    type=int,
+    default=None,
+    show_default="all variants",
+    help="If using a PGEN file, read genotypes in chunks of X variants; reduces memory",
+)
 def simgenotype(
     ref_vcf,
     sample_info,
@@ -225,6 +233,7 @@ def simgenotype(
     no_replacement,
     only_breakpoint,
     verbosity,
+    chunk_size
 ):
     """
     Simulate admixed genomes under a pre-defined model.
@@ -285,6 +294,7 @@ def simgenotype(
         no_replacement,
         region,
         only_breakpoint,
+        # chunk_size
     )
     samples, pop_dict, breakpoints = simulate_gt(
         model, mapdir, chroms, region, popsize, log, seed
@@ -307,6 +317,7 @@ def simgenotype(
             no_replacement,
             out,
             log,
+            chunk_size
         )
     end = time.time()
 
